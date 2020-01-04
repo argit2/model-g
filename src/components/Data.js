@@ -72,33 +72,47 @@ class Data extends Component {
       ],
       dichotomies: [
           {
-            dico1: "external",
-            dico2: "internal",
-            places: [[1, 2, 3, 4], [5, 6, 7, 8]]
+            dicho1: "external",
+            dicho2: "internal",
+            places: [[1, 2, 3, 4], [5, 6, 7, 8]],
+            description1: "How you deal with the external world.",
+            description2: "How you behave in close distance."
           },{
-            dico1: "values",
-            dico2: "tools",
-            places: [[1, 4, 7, 8], [2, 3, 5, 6]] 
+            dicho1: "values",
+            dicho2: "tools",
+            places: [[1, 4, 7, 8], [2, 3, 5, 6]],
+            description1: "Long term motivation, accumulates problems, lack of energy.",
+            description2: "Solves problems, excess energy."
           },{
-            dico1: "master",
-            dico2: "slave",
-            places: [[1, 2, 5, 8], [3, 4, 6, 7]] 
+            dicho1: "master",
+            dicho2: "slave",
+            places: [[1, 2, 5, 8], [3, 4, 6, 7]],
+            description1: "Coordinates the type's activity, sends energy pulses.",
+            description2: "Follows master, receives energy pulses." 
           },{
-            dico1: "resistant",
-            dico2: "unstable",
-            places: [[1, 3, 6, 8], [2, 4, 5, 7]] 
+            dicho1: "resistant",
+            dicho2: "unstable",
+            places: [[1, 3, 6, 8], [2, 4, 5, 7]],
+            description1: "Works stably and systematically",
+            description2: "Needs strong motivation to keep going."
           },{
-            dico1: "automatic",
-            dico2: "conscious",
-            places: [[1, 2, 6, 7], [3, 4, 5, 8]] 
+            dicho1: "automatic",
+            dicho2: "conscious",
+            places: [[1, 2, 6, 7], [3, 4, 5, 8]],
+            description1: "You aren't so aware of the judgements made by this function.",
+            description2: "You are aware of the judgements made by this function." 
           },{
-            dico1: "kinetic",
-            dico2: "potential",
-            places: [[1, 3, 5, 7], [2, 4, 6, 8]] 
+            dicho1: "kinetic",
+            dicho2: "potential",
+            places: [[1, 3, 5, 7], [2, 4, 6, 8]],
+            description1: "Consumes more energy than it accumulates. Does.",
+            description2: "Accumulates energy. More prone to verbalizing instead of doing." 
           },{
-            dico1: "accelerating",
-            dico2: "slowing",
-            places: [[1, 4, 5, 6], [2, 3, 7, 8]]
+            dicho1: "accelerating",
+            dicho2: "slowing",
+            places: [[1, 4, 5, 6], [2, 3, 7, 8]],
+            description1: "Energizes the type.",
+            description2: "De-energizes the type."
         }
       ]
     };
@@ -110,7 +124,7 @@ class Data extends Component {
         list.places[dicho].map((list2, index) => {
           return(
               this.state.types[type].functions[list2 - 1] + " "
-          )
+          );
         })
       )
     }
@@ -125,6 +139,7 @@ class Data extends Component {
               <th>1</th><th>2</th><th>3</th><th>4</th>
             </tr>
           </thead>
+          <tbody>
           <tr>
           {
             this.state.types[index].functions.slice(0,4).map((list) => {
@@ -142,6 +157,7 @@ class Data extends Component {
               )})
           }
           </tr>
+          </tbody>
           <tfoot>
             <tr>
               <th>5</th><th>6</th><th>7</th><th>8</th>
@@ -155,17 +171,33 @@ class Data extends Component {
       return (
         <Table>
           <thead>
-            <tr><th colspan="4">Dichotomies</th></tr>
+            <tr>
+              <th>Functions</th>
+              <th colspan="2"><center>Dichotomies</center></th>
+              <th>Functions</th>
+            </tr>
           </thead>
           <tbody>
         {
           this.state.dichotomies.map((list, index) => {
             return(
                 <tr>
-                  <td>{list.dico1}</td>
-                  <td>{this.getFunctions(list, type, 0)}</td>
-                  <td>{list.dico2}</td>
-                  <td>{this.getFunctions(list, type, 1)}</td>
+                  <td>
+                    {this.state.types[type].functions[list.places[0][0] - 1] + " "}
+                    {this.state.types[type].functions[list.places[0][1] - 1]}
+                    <br></br>
+                    {this.state.types[type].functions[list.places[0][2] - 1] + " "}
+                    {this.state.types[type].functions[list.places[0][3] - 1]}
+                  </td>
+                  <td> <b>{list.dicho1}</b> <br></br> {list.description1} </td>
+                  <td> <b>{list.dicho2}</b> <br></br> {list.description2} </td>
+                  <td>
+                    {this.state.types[type].functions[list.places[1][0] - 1] + " "}
+                    {this.state.types[type].functions[list.places[1][1] - 1]}
+                    <br></br>
+                    {this.state.types[type].functions[list.places[1][2] - 1] + " "}
+                    {this.state.types[type].functions[list.places[1][3] - 1]}
+                  </td>
                 </tr>
             )
           })
